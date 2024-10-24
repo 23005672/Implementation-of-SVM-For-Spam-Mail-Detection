@@ -28,8 +28,15 @@ RegisterNumber: 212223240141
 */
 ```
 ```
+import chardet
+file='/content/spam.csv'
+with open(file,'rb') as rawdata:
+  result = chardet.detect(rawdata.read(100000))
+result
+
+
 import pandas as pd
-data=pd.read_csv("spam.csv",encoding='windows-1252')
+data=pd.read_csv('spam.csv',encoding='Windows-1252')
 
 data.head()
 
@@ -44,7 +51,6 @@ from sklearn.model_selection import train_test_split
 x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.35,random_state=0)
 
 from sklearn.feature_extraction.text import CountVectorizer
-#countvectorizer is a method to convert text to numerical data. The text is transformed to a sparse matrix
 cv=CountVectorizer()
 
 x_train=cv.fit_transform(x_train)
@@ -60,27 +66,33 @@ from sklearn import metrics
 accuracy=metrics.accuracy_score(y_test,y_pred)
 accuracy
 
-from sklearn.metrics import confusion_matrix,classification_report
-con=confusion_matrix(y_test,y_pred)
+from sklearn.metrics import confusion_matrix, classification_report
+con = confusion_matrix(y_test,y_pred)
 print(con)
 cl=classification_report(y_test,y_pred)
 print(cl)
 ```
 
 ## Output:
-data.head:
+### Head:
 
-![Screenshot 2024-10-24 091856](https://github.com/user-attachments/assets/3a8b6c97-5815-4e17-b3ea-c60addb3b8f6)
+![Screenshot 2024-10-24 093945](https://github.com/user-attachments/assets/1450800c-5939-49d9-8c41-5d35170a194a)
 
-data.info:
+### Info:
 
-![Screenshot 2024-10-24 091904](https://github.com/user-attachments/assets/19b05105-353a-487d-8da9-c688a558e59f)
+![Screenshot 2024-10-24 093952](https://github.com/user-attachments/assets/aca83c7e-fbea-4b69-906c-26c106359083)
 
-data.isnull:
+### isnull:
 
-![Screenshot 2024-10-24 091911](https://github.com/user-attachments/assets/72789478-43b0-4d31-9f08-d0f7d1c3dab6)
+![Screenshot 2024-10-24 093958](https://github.com/user-attachments/assets/e257672a-1107-4b26-aaa6-2308c2752b1a)
 
+### Accuracy:
 
+![Screenshot 2024-10-24 094003](https://github.com/user-attachments/assets/392de935-f6ec-4837-8cba-b4aed9cafbf2)
+
+### Confusion matrix and Classification Report:
+
+![Screenshot 2024-10-24 094010](https://github.com/user-attachments/assets/c5838393-ba9b-4571-bde2-57342a143b78)
 
 ## Result:
 Thus the program to implement the SVM For Spam Mail Detection is written and verified using python programming.
